@@ -19,6 +19,9 @@ export default class TodoForm extends Component {
         event.preventDefault();
         // Props sirve para acceder a las funciones que son pasadas por parametros en los componentes
         this.props.addTodo(this.state.todo);
+        this.setState({
+            todo: ''
+        });
     }
 
     render() {

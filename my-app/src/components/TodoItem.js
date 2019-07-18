@@ -1,5 +1,5 @@
 
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 export default class TodoItem extends Component {
 
@@ -36,7 +36,7 @@ export default class TodoItem extends Component {
                     type="text"
                     className="form-control"
                     value={todo}
-                    onChange={(e)=> this.handleChange(v)}
+                    onChange={(e)=> this.handleChange(e)}
                 />
             );
             actionButon = (

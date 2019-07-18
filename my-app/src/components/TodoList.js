@@ -1,7 +1,8 @@
 
-import { Component } from 'react';
+import React, { Component } from 'react';
 import TodoForm from './TodoForm';
 import TodoItemHead from './TodoItemHead';
+import TodoItem from './TodoItem';
 
 export default class TodoList extends Component {
     constructor() {
@@ -12,15 +13,26 @@ export default class TodoList extends Component {
     }
 
     updateTodo(todo, index) {
-
+        let todos = this.state.todos.slice();
+        todos[index] = todo;
+        this.setState({todos});
     }
 
     removeTodo(index) {
-
+        let todos = this.state.todos.slice();
+        todos.splice(index, 1);
+        this.setState({todos});
     }
 
     addTodo(todo) {
-
+        if(todo){
+            this.setState({
+                todos: [
+                    ...this.state.todos,
+                    todo
+                ]
+            });
+        }
     }
 
     render() {
@@ -52,6 +64,9 @@ export default class TodoList extends Component {
                             return (
                                 <TodoItem
                                     onUpdateTodo={(todoUpdated) => this.updateTodo(todoUpdated, index)}
+                                    onRemove={()=> this.removeTodo(index)}
+                                    index={index}
+                                    key={index}
                                 >
                                     {todo}
                                 </TodoItem>
